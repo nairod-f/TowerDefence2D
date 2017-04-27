@@ -19,10 +19,27 @@ public class PlaceMonster : MonoBehaviour {
             //creating monsters by instantiating a given prefab (monster in this case)
             monster = (GameObject)
             Instantiate(monsterPrefab, transform.position, Quaternion.identity);
-           
+        }
+        else if (canUpgradeMonster())
+        {
+            monster.GetComponent<MonsterData>().increaseLevel();
             //adding audio to the monster prefac when created
             AudioSource audioSource = gameObject.GetComponent<AudioSource>();
             audioSource.PlayOneShot(audioSource.clip);
         }
     }
+    private bool canUpgradeMonster()
+    {
+        if (monster != null)
+        {
+            MonsterData monsterData = monster.GetComponent<MonsterData>();
+            MonsterLevel nextLevel = monsterData.getNextLevel();
+            if (nextLevel != null)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
+

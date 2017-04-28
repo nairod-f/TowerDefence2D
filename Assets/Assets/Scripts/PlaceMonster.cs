@@ -10,7 +10,8 @@ public class PlaceMonster : MonoBehaviour {
 
     private bool canPlaceMonster()
     {
-        return monster == null;
+        int cost = monsterPrefab.GetComponent<MonsterData>().levels[0].cost;
+        return monster == null && gameManager.Gold >= cost;
     }
     //player can add a monster to an empty spot (checking wether it is occupied or not)
     private void OnMouseUp()
@@ -40,7 +41,7 @@ public class PlaceMonster : MonoBehaviour {
             MonsterLevel nextLevel = monsterData.getNextLevel();
             if (nextLevel != null)
             {
-                return true;
+                return gameManager.Gold >= nextLevel.cost;
             }
         }
         return false;

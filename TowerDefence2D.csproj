@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Assets\Scripts\CameraShake.cs" />
+    <Compile Include="Assets\Assets\Scripts\GameManagerBehaviour.cs" />
     <Compile Include="Assets\Assets\Scripts\GameOver.cs" />
     <Compile Include="Assets\Assets\Scripts\MonsterData.cs" />
     <Compile Include="Assets\Assets\Scripts\PlaceMonster.cs" />

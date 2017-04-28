@@ -6,6 +6,7 @@ public class PlaceMonster : MonoBehaviour {
 
     public GameObject monsterPrefab;
     private GameObject monster;
+    private GameManagerBehaviour gameManager;
 
     private bool canPlaceMonster()
     {
@@ -26,6 +27,7 @@ public class PlaceMonster : MonoBehaviour {
             //adding audio to the monster prefac when created
             AudioSource audioSource = gameObject.GetComponent<AudioSource>();
             audioSource.PlayOneShot(audioSource.clip);
+            gameManager.Gold -= monster.GetComponent().CurrentLevel.cost;
         }
     }
     private bool canUpgradeMonster()
@@ -40,6 +42,10 @@ public class PlaceMonster : MonoBehaviour {
             }
         }
         return false;
+    }
+    private void Start()
+    {
+        gameManager =  GameObject.Find("GameManager").GetComponent();
     }
 }
 

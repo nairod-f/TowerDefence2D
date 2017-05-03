@@ -85,11 +85,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Assets\Scripts\CameraShake.cs" />
+    <Compile Include="Assets\Assets\Scripts\EnemyDestructionDelegate.cs" />
     <Compile Include="Assets\Assets\Scripts\GameManagerBehaviour.cs" />
     <Compile Include="Assets\Assets\Scripts\GameOver.cs" />
+    <Compile Include="Assets\Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Assets\Scripts\MonsterData.cs" />
     <Compile Include="Assets\Assets\Scripts\MoveEnemy.cs" />
     <Compile Include="Assets\Assets\Scripts\PlaceMonster.cs" />
+    <Compile Include="Assets\Assets\Scripts\ShootEnemies.cs" />
     <Compile Include="Assets\Assets\Scripts\SpawnEnemy.cs" />
     <Compile Include="Assets\Assets\Scripts\Tutorial.cs" />
   </ItemGroup>

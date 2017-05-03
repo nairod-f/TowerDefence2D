@@ -42,13 +42,17 @@ public class MoveEnemy : MonoBehaviour {
 
                 AudioSource audioSource = gameObject.GetComponent<AudioSource>();
                 AudioSource.PlayClipAtPoint(audioSource.clip, transform.position);
-                // TODO: deduct health
+
+                GameManagerBehaviour gameManager =
+                GameObject.Find("GameManager").GetComponent<GameManagerBehaviour>();
+                gameManager.Health -= 1;
             }
         }
     }
     private void RotateIntoMoveDirection()
     {
         //calculate movement direction by subtracting the current waypoint’s position
+
         Vector3 newStartPosition = waypoints[currentWaypoint].transform.position;
         Vector3 newEndPosition = waypoints[currentWaypoint + 1].transform.position;
         Vector3 newDirection = (newEndPosition - newStartPosition);
@@ -56,13 +60,33 @@ public class MoveEnemy : MonoBehaviour {
         //Mathf.Atan2 to determine the angle toward which newDirection points
         //n radians, assuming zero points to the right. Multiplying the result by 180 / Mathf.PI 
         //converts the angle to degrees.
+
         float x = newDirection.x;
         float y = newDirection.y;
         float rotationAngle = Mathf.Atan2(y, x) * 180 / Mathf.PI;
+
         //retrieves the child named Sprite and rotates it rotationAngle 
+
         GameObject sprite = (GameObject)
             gameObject.transform.FindChild("Sprite").gameObject;
-        sprite.transform.rotation =
-            Quaternion.AngleAxis(rotationAngle, Vector3.forward);
+
+        sprite.transform.rotation = Quaternion.AngleAxis(rotationAngle, Vector3.forward);
+    }
+
+    public float distanceToGoal()
+    {
+        //calculates the length of road not yet traveled by the enemy.
+
+        float distance = 0;
+        distance += Vector3.Distance(
+            gameObject.transform.position,
+            waypoints[currentWaypoint + 1].transform.position);
+        for (int i = currentWaypoint + 1; i < waypoints.Length - 1; i++)
+        {
+            Vector3 startPosition = waypoints[i].transform.position;
+            Vector3 endPosition = waypoints[i + 1].transform.position;
+            distance += Vector3.Distance(startPosition, endPosition);
+        }
+        return distance;
     }
 }

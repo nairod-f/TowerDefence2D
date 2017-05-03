@@ -1,4 +1,4 @@
 sceneSetups:
-- path: C:/Users/Doria/Desktop/TowerDefense-Part2-Starter/Assets/Scenes/GameScene.unity
+- path: Assets/Assets/Scenes/GameScene.unity
   isLoaded: 1
   isActive: 1

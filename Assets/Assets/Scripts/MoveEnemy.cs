@@ -8,7 +8,7 @@ public class MoveEnemy : MonoBehaviour {
     public GameObject[] waypoints;
     private int currentWaypoint = 0;
     private float lastWaypointSwitchTime;
-    public float speed = 1.0f;
+    public float speed = 40f;
 
     // Use this for initialization
     void Start () {
@@ -33,7 +33,7 @@ public class MoveEnemy : MonoBehaviour {
                 // add waypoint
                 currentWaypoint++;
                 lastWaypointSwitchTime = Time.time;
-                // TODO: Rotate into move direction
+                RotateIntoMoveDirection();
             }
             else
             {
@@ -45,5 +45,27 @@ public class MoveEnemy : MonoBehaviour {
                 // TODO: deduct health
             }
         }
+
+    }
+    private void RotateIntoMoveDirection()
+    {
+        //calculate bug's movement by subtracting tghe current waypoint from the next
+        Vector3 newStartPosition = waypoints[currentWaypoint].transform.position;
+        Vector3 newEndPosition = waypoints[currentWaypoint + 1].transform.position;
+        Vector3 newDirection = (newEndPosition - newStartPosition);
+        //it uses Mathf.Atan2 to determine the angle toward which newDirection 
+        //points, in radians, assuming zero points to the right. 
+        //Multiplying the result by 180 / Mathf.PI converts the angle to degrees.
+
+        float x = newDirection.x;
+        float y = newDirection.y;
+        float rotationAngle = Mathf.Atan2(y, x) * 180 / Mathf.PI;
+
+        //retrieves the child named Sprite and rotates it rotationAngle degrees along the z-axis
+        GameObject sprite = (GameObject)
+            gameObject.transform.FindChild("Sprite").gameObject;
+        sprite.transform.rotation =
+            Quaternion.AngleAxis(rotationAngle, Vector3.forward);
     }
 }
+

@@ -7,6 +7,9 @@ public class GameManagerBehaviour : MonoBehaviour {
 
     public Text goldLabel;
     private int gold;
+    public Text waveLabel;
+    public GameObject[] nextWaveLabels;
+    public bool gameOver = false;
 
     public int Gold
     {
@@ -21,10 +24,28 @@ public class GameManagerBehaviour : MonoBehaviour {
         }
     }
 
-	// Use this for initialization
-	void Start () {
-    Gold = 1000;
-	}
+    private int wave;
+    public int Wave
+    {
+        get { return wave; }
+        set
+        {
+            wave = value;
+            if (!gameOver)
+            {
+                for (int i = 0; i < nextWaveLabels.Length; i++)
+                {
+                    nextWaveLabels[i].GetComponent<Animator>().SetTrigger("nextWave");
+                }
+            }
+            waveLabel.text = "WAVE: " + (wave + 1);
+        }
+    }
+    // Use this for initialization
+    void Start () {
+        Gold = 1000;
+        Wave = 0;
+    }
 	
 	// Update is called once per frame
 	void Update () {

@@ -7,15 +7,14 @@ public class MonsterLevel
 {
     public int cost;
     public GameObject visualization;
+    public GameObject bullet;
+    public float fireRate;
 }
 public class MonsterData : MonoBehaviour
 {
     //the list gives the user access to the generic data structures of the script
     public List<MonsterLevel> levels;
     private MonsterLevel currentLevel;
-    public GameObject bullet;
-    public float fireRate;
-
 
     public MonsterLevel CurrentLevel
     {

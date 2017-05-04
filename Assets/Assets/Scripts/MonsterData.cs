@@ -13,6 +13,9 @@ public class MonsterData : MonoBehaviour
     //the list gives the user access to the generic data structures of the script
     public List<MonsterLevel> levels;
     private MonsterLevel currentLevel;
+    public GameObject bullet;
+    public float fireRate;
+
 
     public MonsterLevel CurrentLevel
     {
@@ -55,6 +58,7 @@ public class MonsterData : MonoBehaviour
     }
 
     public MonsterLevel getNextLevel(){
+
         //checking out whether it is possible to level monster
         int currentLevelIndex = levels.IndexOf (currentLevel);
         int maxLevelIndex = levels.Count - 1;

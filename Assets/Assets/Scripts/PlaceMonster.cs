@@ -19,8 +19,9 @@ public class PlaceMonster : MonoBehaviour {
         if (canPlaceMonster())
         {
             //creating monsters by instantiating a given prefab (monster in this case)
-            monster = (GameObject)
-            Instantiate(monsterPrefab, transform.position, Quaternion.identity);
+            monster = (GameObject) Instantiate(monsterPrefab, transform.position, Quaternion.identity);
+
+            gameManager.Gold -= monster.GetComponent<MonsterData>().CurrentLevel.cost;
         }
         else if (canUpgradeMonster())
         {

@@ -38,9 +38,9 @@ public class ShootEnemies : MonoBehaviour {
         if (other.gameObject.tag.Equals("Enemy"))
         {
             enemiesInRange.Remove(other.gameObject);
-            EnemyDestructionDelegate del =
+            EnemyDestructionDelegate Destroy =
                 other.gameObject.GetComponent<EnemyDestructionDelegate>();
-            del.enemyDelegate -= OnEnemyDestroy;
+            Destroy.enemyDelegate -= OnEnemyDestroy;
         }
     }
     void Shoot(Collider2D target)
